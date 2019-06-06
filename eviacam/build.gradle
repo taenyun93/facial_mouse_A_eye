@@ -1,0 +1,147 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+apply plugin: 'com.android.application'
+
+/* Gets the version name from the latest Git tag */
+def getVersionName = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'describe', '--tags'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+def getVersionCode = { ->
+    def versionPropsFile = file('../version.properties')
+
+    if (versionPropsFile.canRead()) {
+        def Properties versionProps = new Properties()
+
+        versionProps.load(new FileInputStream(versionPropsFile))
+
+        def code = versionProps['VERSION_CODE'].toInteger()
+
+        /* Uncomment for auto-incremental build number */
+        /*
+        code+= 1
+        versionProps['VERSION_CODE'] = code.toString()
+        versionProps.store(versionPropsFile.newWriter(), null)
+        */
+        return code
+    }
+    else {
+        throw new GradleException("Could not read version.properties!")
+    }
+}
+
+def getBuildOrigin() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    def build_origin  = properties.getProperty('build.origin')
+    if (build_origin== null) return "\"regular\""
+    else return build_origin
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "25.0.2"
+
+    sourceSets.main {
+        jniLibs.srcDir 'src/main/libs' //set .so files location to libs instead of jniLibs
+        jni.srcDirs = [] //disable automatic ndk-build call
+    }
+
+    dexOptions {
+        javaMaxHeapSize "2g"
+    }
+
+    android {
+        // TODO
+        lintOptions {
+            abortOnError false
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.crea_si.eviacam.service"
+        minSdkVersion 16
+        targetSdkVersion 23
+
+        versionCode getVersionCode()
+        versionName getVersionName()
+
+        // ndk {
+        //     moduleName "visionpipeline"
+        // }
+    }
+
+
+    def ndkProjectPath="src/main"
+
+    // File: local.properties should have something like this:
+
+    // ndk.dir=C\:\\Program_Files\\Android\\android-ndk-r10e
+    // sdk.dir=C\:\\Program Files (x86)\\Android\\android-sdk
+    // build.origin="regular"
+    task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        def ndkDir = properties.getProperty('ndk.dir')
+        def ndkCmd = ''
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            ndkCmd = 'ndk-build.cmd'
+        } else {
+            ndkCmd = 'ndk-build'
+        }
+        commandLine "${ndkDir}/${ndkCmd}",
+                "NDK_PROJECT_PATH=${ndkProjectPath}",
+                "APP_BUILD_SCRIPT=${ndkProjectPath}/jni/Android.mk",
+                "NDK_APPLICATION_MK=${ndkProjectPath}/jni/Application.mk"
+    }
+
+    task ndkLibsToJar(type: Zip, dependsOn: 'ndkBuild', description: 'Create a JAR of the native libs') {
+        destinationDir new File(buildDir, 'libs')
+        baseName 'ndk-libs'
+        extension 'jar'
+        from(new File(buildDir, 'libs')) { include '**/*.so' }
+        into 'lib/'
+    }
+
+    tasks.withType(JavaCompile) {
+        compileTask -> compileTask.dependsOn ndkLibsToJar
+    }
+
+    clean.doFirst {
+        delete "${ndkProjectPath}/libs"
+        delete "${ndkProjectPath}/obj"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            lintOptions {
+                disable 'MissingTranslation'
+            }
+            buildConfigField "String", "BUILD_ORIGIN", getBuildOrigin()
+        }
+
+        debug {
+            buildConfigField "String", "BUILD_ORIGIN", getBuildOrigin()
+        }
+    }
+}
+
+
+
+dependencies {
+    compile project(':opencv')
+    compile project(':input_method_aidl')
+    compile project(':eviacam_api')
+    compile project(':softkeyboard')
+    compile 'com.android.support:support-v4:23.+'
+    compile 'com.google.android.gms:play-services-analytics:8.3.0'
+    compile 'ch.acra:acra:4.9.2'
+    compile project(':WizarDroid:wizardroid')
+}

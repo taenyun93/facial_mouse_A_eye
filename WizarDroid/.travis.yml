@@ -1,0 +1,15 @@
+language: android
+jdk: oraclejdk7
+branches:
+  excludes:
+    - gh-pages
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-21.1.2
+    - android-21
+    - extra-android-m2repository
+
+script:
+  - ./gradlew assemble

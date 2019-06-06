@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ /*
+ ** Enable Viacam for Android, a camera based mouse emulator
+ **
+ ** Copyright (C) 2015-17 Cesar Mauri Loba (CREA Software Systems)
+ **
+ ** This program is free software: you can redistribute it and/or modify
+ ** it under the terms of the GNU General Public License as published by
+ ** the Free Software Foundation, either version 3 of the License, or
+ ** (at your option) any later version.
+ **
+ ** This program is distributed in the hope that it will be useful,
+ ** but WITHOUT ANY WARRANTY; without even the implied warranty of
+ ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ ** GNU General Public License for more details.
+ **
+ ** You should have received a copy of the GNU General Public License
+ ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:key="preference_screen">
+
+    <PreferenceCategory android:title="@string/settings_motion_settings">
+
+       <com.crea_si.eviacam.util.NumberPickerPreference
+            android:key="horizontal_speed"
+            android:title="@string/settings_horizontal_speed"
+            android:dialogMessage="@string/settings_horizontal_speed"
+            android:defaultValue="@integer/axis_speed_default"
+            app:minValue="@integer/axis_speed_min"
+            app:maxValue="@integer/axis_speed_max"
+        />
+       <com.crea_si.eviacam.util.NumberPickerPreference
+            android:key="vertical_speed"
+            android:title="@string/settings_vertical_speed"
+            android:dialogMessage="@string/settings_vertical_speed"
+            android:defaultValue="@integer/axis_speed_default"
+            app:minValue="@integer/axis_speed_min"
+            app:maxValue="@integer/axis_speed_max"
+        />
+        <CheckBoxPreference
+            android:key="lock_speeds"
+            android:title="@string/settings_lock_speed_settings"
+            android:defaultValue="@bool/lock_speed_settings_default"
+        />
+       
+       <com.crea_si.eviacam.util.NumberPickerPreference
+            android:key="acceleration"
+            android:title="@string/settings_acceleration"
+            android:dialogMessage="@string/settings_acceleration_summary"
+            android:summary="@string/settings_acceleration_summary"
+            android:defaultValue="@integer/acceleration_default" 
+            app:minValue="@integer/acceleration_min"
+            app:maxValue="@integer/acceleration_max"
+        />
+       
+       <com.crea_si.eviacam.util.NumberPickerPreference
+            android:key="motion_smoothing"
+            android:title="@string/settings_motion_smoothing"
+            android:dialogMessage="@string/settings_motion_smoothing_summary"
+            android:summary="@string/settings_motion_smoothing_summary"
+            android:defaultValue="@integer/motion_smoothing_default" 
+            app:minValue="@integer/motion_smoothing_min"
+            app:maxValue="@integer/motion_smoothing_max"
+        />
+       
+       <com.crea_si.eviacam.util.NumberPickerPreference
+            android:key="motion_threshold"
+            android:title="@string/settings_motion_threshold"
+            android:dialogMessage="@string/settings_motion_threshold_summary"
+            android:summary="@string/settings_motion_threshold_summary"
+            android:defaultValue="@integer/motion_threshold_default" 
+            app:minValue="@integer/motion_threshold_min"
+            app:maxValue="@integer/motion_threshold_max"
+        />
+       
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/settings_click_settings">
+
+        <com.crea_si.eviacam.util.NumberPickerPreference
+            android:key="dwell_time"
+            android:title="@string/settings_dwell_time"
+            android:dialogMessage="@string/settings_dwell_time_summary"
+            android:summary="@string/settings_dwell_time_summary"
+            android:defaultValue="@integer/dwell_time_default" 
+            app:minValue="@integer/dwell_time_min"
+            app:maxValue="@integer/dwell_time_max"
+        />
+        
+        <com.crea_si.eviacam.util.NumberPickerPreference
+            android:key="dwell_area"
+            android:title="@string/settings_dwell_area"
+            android:dialogMessage="@string/settings_dwell_area_summary"
+            android:summary="@string/settings_dwell_area_summary"
+            android:defaultValue="@integer/dwell_area_default" 
+            app:minValue="@integer/dwell_area_min"
+            app:maxValue="@integer/dwell_area_max" 
+        />
+        <CheckBoxPreference 
+            android:key="sound_on_click"
+            android:title="@string/settings_sound_on_click"
+            android:defaultValue="@bool/sound_on_click_default"
+        />
+        
+        <CheckBoxPreference 
+            android:key="consecutive_clicks"
+            android:title="@string/settings_consecutive_clicks"
+            android:defaultValue="@bool/consecutive_clicks_default"
+        />
+        
+    </PreferenceCategory>
+    
+    <PreferenceCategory 
+        android:key="interface_settings"
+        android:title="@string/settings_interface_settings">
+        
+        <ListPreference
+            android:key="docking_panel_edge"
+            android:title="@string/settings_dock_menu_position"
+            android:summary="%s"
+            android:entries="@array/docking_panel_edge_entries"
+            android:entryValues="@array/docking_panel_edge_values"
+            android:defaultValue="@integer/docking_panel_edge_default"
+        />
+        
+        <ListPreference
+            android:key="ui_elements_size"
+            android:title="@string/settings_ui_elements_size"
+            android:summary="%s"
+            android:entries="@array/ui_elements_size_entries"
+            android:entryValues="@array/ui_elements_size_values"
+            android:defaultValue="@string/ui_elements_size_default"
+        />
+
+    </PreferenceCategory>
+    
+     <PreferenceCategory android:title="@string/settings_detection_settings">
+        
+        <ListPreference
+            android:key="time_without_detection"
+            android:title="@string/settings_time_without_detection"
+            android:summary="%s"
+            android:entries="@array/time_without_detection_entries"
+            android:entryValues="@array/time_without_detection_values"
+            android:defaultValue="@string/time_without_detection_default"
+        />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="advanced"
+        android:title="@string/settings_advanced">
+
+    <ListPreference
+        android:key="use_camera2_api"
+        android:title="@string/settings_use_camera2_api"
+        android:summary="%s"
+        android:entries="@array/use_camera2_api_entries"
+        android:entryValues="@array/use_camera2_api_entries_values"
+        android:defaultValue="@string/use_camera2_api_entries_default"
+        />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="help"
+        android:title="@string/settings_help">
+
+        <Preference
+            android:key="wizard"
+            android:title="@string/settings_configuration_wizard">
+        </Preference>
+
+        <CheckBoxPreference
+            android:key="acra.enable"
+            android:title="@string/settings_send_anon_error_reports"
+            android:defaultValue="true"
+        />
+
+        <Preference
+            android:key="version"
+            android:title="@string/settings_version">
+        </Preference>
+    </PreferenceCategory>
+        
+</PreferenceScreen>

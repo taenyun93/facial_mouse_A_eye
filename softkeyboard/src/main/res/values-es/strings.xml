@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+/**
+ * Modified by Cesar Mauri (CREA) 2015 for the Enable Viacam for Android project
+ */
+-->
+<resources>
+    <!-- Title for Latin keyboard  -->
+    <string name="kbd_service_name">Teclado EVA</string>
+
+    <!-- Symbols that are commonly considered word separators in this language -->
+    <string name="kbd_word_separators">\u0020.,;:!?\n()[]*&amp;@{}/&lt;&gt;_+=|&quot;</string>
+    
+    <!-- Labels on soft keys -->
+    <string name="kbd_key_label_go">Ve</string>
+    <string name="kbd_key_label_next">Siguiente</string>
+    <string name="kbd_key_label_send">Enviar</string>
+
+    <!-- Labels for navigation keyboard -->
+    <string name="kdd_key_label_delete">Supr</string>
+    <string name="kbd_key_label_home">Inicio</string>
+    <string name="kbd_key_label_pgup">RePág</string>
+    <string name="kbd_key_label_end">Fin</string>
+    <string name="kbd_key_label_pgdown">AvPág</string>
+
+    <!-- Labels for subtype -->
+    <string name="kbd_label_subtype_generic">%s</string>
+
+    <!-- Titles for ImePreference -->
+    <string name="kbd_settings_name">Configuración del teclado EVA</string>
+    <string name="kbd_language_selection_title">Idiomas de entrada</string>
+    <string name="kbd_select_language">Seleccionar idiomas de entrada</string>
+
+</resources>

@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 21
+        versionCode project.ext.versionCode
+        versionName version
+    }
+
+    signingConfigs {
+	    release 
+	}
+
+	buildTypes {
+	    release {
+	        signingConfig signingConfigs.release
+	    }
+	}
+
+	if (project.hasProperty('keystoreFile') &&
+	        project.hasProperty('keystorePassword') &&
+	        project.hasProperty('keyPassword') &&
+	        project.hasProperty('keyAlias')) {
+	    android.signingConfigs.release.storeFile = file(keystoreFile)
+	    android.signingConfigs.release.storePassword = keystorePassword
+	    android.signingConfigs.release.keyPassword = keyPassword
+	    android.signingConfigs.release.keyAlias = keyAlias
+	} 
+
+	else {
+	    buildTypes.release.signingConfig = null
+	}
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:22.0.0'
+    compile project(':wizardroid')
+
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.2.1'
+}

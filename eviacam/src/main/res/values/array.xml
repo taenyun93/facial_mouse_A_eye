@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ /*
+ ** Enable Viacam for Android, a camera based mouse emulator
+ **
+ ** Copyright (C) 2015 Cesar Mauri Loba (CREA Software Systems)
+ **
+ ** This program is free software: you can redistribute it and/or modify
+ ** it under the terms of the GNU General Public License as published by
+ ** the Free Software Foundation, either version 3 of the License, or
+ ** (at your option) any later version.
+ **
+ ** This program is distributed in the hope that it will be useful,
+ ** but WITHOUT ANY WARRANTY; without even the implied warranty of
+ ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ ** GNU General Public License for more details.
+ **
+ ** You should have received a copy of the GNU General Public License
+ ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+-->
+<resources>
+
+<string-array name="time_without_detection_entries">
+    <item>@string/settings_never</item>
+    <item>@string/settings_after_ten_seconds</item>
+    <item>@string/settings_after_thirty_seconds</item>
+    <item>@string/settings_after_one_minute</item>
+    <item>@string/settings_after_two_minutes</item>
+    <item>@string/settings_after_five_minutes</item>
+</string-array>
+<string-array name="time_without_detection_values" translatable="false">
+    <item>0</item>
+    <item>10</item>
+    <item>30</item>
+    <item>60</item>
+    <item>120</item>
+    <item>300</item>
+</string-array>
+
+<string-array name="docking_panel_edge_entries">
+    <item>@string/settings_dock_menu_position_left</item>
+    <item>@string/settings_dock_menu_position_right</item>
+    <item>@string/settings_dock_menu_position_top</item>
+    <item>@string/settings_dock_menu_position_bottom</item>
+</string-array>
+<string-array name="docking_panel_edge_values">
+    <item>@string/docking_panel_edge_left_value</item>
+    <item>@string/docking_panel_edge_right_value</item>
+    <item>@string/docking_panel_edge_top_value</item>
+    <item>@string/docking_panel_edge_bottom_value</item>    
+</string-array>
+
+<string-array name="ui_elements_size_entries">
+    <item>@string/settings_ui_elements_size_small</item>
+    <item>@string/settings_ui_elements_size_normal</item>
+    <item>@string/settings_ui_elements_size_large</item>
+    <item>@string/settings_ui_elements_size_xlarge</item>
+</string-array>
+<string-array name="ui_elements_size_values" translatable="false">
+    <item>0.8</item>
+    <item>1</item>
+    <item>1.5</item>
+    <item>2</item>
+</string-array>
+
+<string-array name="gamepad_location_entries">
+    <item>@string/slave_settings_top_left</item>
+    <item>@string/slave_settings_bottom_left</item>
+    <item>@string/slave_settings_top_center</item>
+    <item>@string/slave_settings_bottom_center</item>
+    <item>@string/slave_settings_top_right</item>
+    <item>@string/slave_settings_bottom_right</item>
+</string-array>
+<string-array name="gamepad_location_values" translatable="false">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+</string-array>
+
+<string-array name="gamepad_transparency_entries" translatable="false">
+    <item>20 &#65285;</item>
+    <item>40 &#65285;</item>
+    <item>60 &#65285;</item>
+    <item>80 &#65285;</item>
+    <item>100 &#65285;</item>
+</string-array>
+<string-array name="gamepad_transparency_values" translatable="false">
+    <item>20</item>
+    <item>40</item>
+    <item>60</item>
+    <item>80</item>
+    <item>100</item>
+</string-array>
+
+<string-array name="use_camera2_api_entries" translatable="false">
+    <item>@string/settings_use_camera2_api_auto</item>
+    <item>@string/settings_use_camera2_api_yes</item>
+    <item>@string/settings_use_camera2_api_no</item>
+</string-array>
+<string-array name="use_camera2_api_entries_values" translatable="false">
+    <item>auto</item>
+    <item>yes</item>
+    <item>no</item>
+</string-array>
+
+</resources>
